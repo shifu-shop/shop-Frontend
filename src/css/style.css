@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+    font-family: Times;
+}
+
 #main, html {
     background-color: rgb(237,238,240);
 }
@@ -7,39 +12,14 @@
     cursor: default;
 }
 
-.content-wrap {
+.section {
     background-color: rgb(250, 251, 252);
+    margin-top: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     border-left: 1px solid rgb(227, 228, 232);
     border-right: 1px solid rgb(227, 228, 232);
     border-bottom: 1px solid rgb(227, 228, 232);
-}
-
-.vacancy {
-
-}
-
-.vacancy-item {
-    background-color: rgb(250, 251, 252);
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-left: 1px solid rgb(227, 228, 232);
-    border-right: 1px solid rgb(227, 228, 232);
-    border-bottom: 1px solid rgb(227, 228, 232);
-}
-
-.vacancy-title {
-    font-size: 1rem;
-    font-weight: normal;
-}
-
-.vacancy-company-name, .vacancy-company-salary {
-    margin: 0;
-}
-
-.vacancy-company-contract-type, .vacancy-company-contract-time, .vacancy-company-contract-location {
-    margin: 0;
 }
 
 .bg-custom-green {

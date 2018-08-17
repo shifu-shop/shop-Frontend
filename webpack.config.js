@@ -26,7 +26,7 @@ const config = {
             chunkFilename: "[id].css"
         }),
         new HtmlWebpackPlugin({
-            title: 'Jobos',
+            title: 'Shopos',
             template: "./src/template.html"
         }),
         new CleanWebpackPlugin(['dist']),
