@@ -2,8 +2,10 @@
     <main id="main">
         <nav class="navbar navbar-expand navbar-dark bg-custom-green">
             <div class="container">
-                <div class="row">
-                    <a id="logo" class="col-4 offset-2">Shopos</a>
+                <div class="row container justify-content-between">
+                    <a id="logo">Shopos</a>
+                    <router-link to="/" style="color: white; text-decoration: none">Main</router-link>
+                    <router-link to="/cart" style="color: white; text-decoration: none">My cart</router-link>
                 </div>
             </div>
         </nav>
