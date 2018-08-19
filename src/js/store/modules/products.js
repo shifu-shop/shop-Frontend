@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const state = {
     products: [],
-    product: {},
     pageNumber: 0,
     pageCount: 0
 };
@@ -15,7 +14,7 @@ const actions = {
     load({ commit }, { value, offset }) {
         return new Promise((resolve, reject) => {
             axios.get(`http://80.87.197.194:8888/getallproducts?value=${value}&offset=${offset}`).then(response => {
-                commit('loadProducts', response.data);
+                commit('load', response.data);
                 resolve(true);
             }).catch(error => {
                 console.table(error);
@@ -23,24 +22,25 @@ const actions = {
             });
         })
     },
-    add({ commit }, { image, title, description, price }) {
+    add({ commit }, { image, title, description, price, cropImg }) {
         axios.post('http://80.87.197.194:8888/product', {
             title,
             description,
             category: 1,
             price
         }).then(response => {
+            const id = response.data;
             console.log(response);
+            axios.post('http://80.87.197.194:8888/image', {
+                image: cropImg,
+                productId: id
+            }).then(response => {
+                console.log(response)
+            }).catch(error => {
+                console.table(error)
+            })
         }).catch(error => {
             console.table(error);
-        })
-    },
-    loadProduct({ commit }, productId) {
-        commit('clearProduct');
-        axios.get(`http://80.87.197.194:8888/product/${productId}`).then(response => {
-            commit('selectProduct', response.data);
-        }).catch(error => {
-            console.table(error)
         })
     },
     pageCount({ commit }) {
@@ -55,20 +55,8 @@ const actions = {
 };
 
 const mutations = {
-    loadProducts(state, productsArray) {
+    load(state, productsArray) {
         state.products = productsArray;
-    },
-    selectProduct(state, productObj) {
-        state.product = productObj;
-    },
-    clearProduct(state) {
-        state.product = {};
-    },
-    nextPage(state) {
-        state.pageNumber++;
-    },
-    previousPAge(state) {
-        state.pageNumber--;
     },
     pageCount(state, counted) {
         state.pageCount = counted;

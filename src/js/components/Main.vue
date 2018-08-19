@@ -4,9 +4,6 @@
                 <section class="section product row" v-for="product in products">
                     <header class="product-header col-4">
                         <img src="" alt="" class="product-header-img">
-                        <div class="product-header-buttons">
-                            <button class="btn btn-custom-green" @click="addToCart(product._id)">Add to cart</button>
-                        </div>
                     </header>
                     <div class="product-header-title col-8">
                         <router-link :to="'product/' + product._id" class="product-title col-12">{{ product.title }}</router-link>
@@ -38,9 +35,6 @@
         methods: {
             selectPage(selectedPage) {
                 this.$store.dispatch('products/load', { value: 10, offset: selectedPage * 10 - 10 });
-            },
-            addToCart(id) {
-                this.$store.dispatch('cart/add', id);
             }
         },
         computed: {
@@ -65,12 +59,6 @@
         margin: auto;
         color: deepskyblue;
         cursor: pointer;
-    }
-
-    .product-header-buttons {
-        display: flex;
-        align-items: center;
-        flex-direction: column-reverse;
     }
 
     .product-header-buttons > button {

@@ -11,7 +11,7 @@ const routes = [
         component: Main,
     },
     {
-        path: '/product/add',
+        path: '/add',
         name: 'AddProduct',
         component: AddProduct
     },

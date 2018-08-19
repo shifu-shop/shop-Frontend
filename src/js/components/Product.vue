@@ -1,21 +1,24 @@
 <template>
-    <div class="product-item section">
+    <div v-if="product.loading || product.error" class="section">
+        <h3 class="text-center">Loading...</h3>
+    </div>
+    <div v-else class="product-item section">
         <header class="product-item-header">
             <div class="col-4 product-item-header-img">
                 <img src="" alt="">
             </div>
             <div class="product-item-header-description col-8">
-                <h3 class="product-item-header-title">{{ product.title }}</h3>
-                <p class="product-item-header-id">id: {{ product._id }}</p>
-                <p class="product-item-header-price">{{ product.price }} $</p>
+                <h3 class="product-item-header-title">{{ product.item.title }}</h3>
+                <p class="product-item-header-id">id: {{ product.item._id }}</p>
+                <p class="product-item-header-price">{{ product.item.price }} $</p>
                 <div class="product-header-buttons">
-                    <button class="btn btn-custom-green" @click="addToCart(product._id)">Add to cart</button>
+                    <button class="btn btn-custom-green" @click="addToCart(product.item._id)">Add to cart</button>
                 </div>
             </div>
         </header>
         <main class="product-item-body col-8 offset-2">
             <h3 class="product-item-body-title">Description:</h3>
-            <p class="product-item-body-description">{{ product.description }}</p>
+            <p class="product-item-body-description">{{ product.item.description }}</p>
         </main>
     </div>
 </template>
@@ -26,17 +29,18 @@
         name: "Product",
         methods: {
             addToCart(id) {
-                this.$store.dispatch('cart/add', id);
+                this.$store.dispatch('cart/add', id).then(success => {
+                    this.$store.dispatch('cart/load');
+                });
             }
         },
         computed: {
             ...mapState({
-                product: state => state.products.product
+                product: state => state.product
             })
         },
         created() {
-            this.$store.dispatch('products/loadProduct', this.$route.params.id);
-            console.log(this.product)
+            this.$store.dispatch('product/load', this.$route.params.id);
         }
     }
 </script>
