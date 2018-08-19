@@ -1,5 +1,7 @@
 <template>
-    <h3>Page not found</h3>
+    <div class="section">
+        <h3 class="text-center">Page not found</h3>
+    </div>
 </template>
 
 <script>

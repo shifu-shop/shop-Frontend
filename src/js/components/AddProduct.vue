@@ -90,7 +90,6 @@
                     const reader = new FileReader();
                     reader.onload = (event) => {
                         this.newProduct.imgSrc = event.target.result;
-                        console.log(this.$refs)
                         this.$refs.cropper.replace(event.target.result);
                     };
                     reader.readAsDataURL(file);

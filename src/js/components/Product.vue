@@ -5,7 +5,10 @@
     <div v-else class="product-item section">
         <header class="product-item-header">
             <div class="col-4 product-item-header-img">
-                <img src="" alt="">
+                <img :src="product.item.img64" alt="source image" class="product-header-img" v-if="product.item.img64">
+                <div class="product-header-img" v-else>
+                    <p>No photo</p>
+                </div>
             </div>
             <div class="product-item-header-description col-8">
                 <h3 class="product-item-header-title">{{ product.item.title }}</h3>
@@ -106,5 +109,20 @@
 
     .product-item-body-description {
         font-size: 1.3rem;
+    }
+
+    .product-header-img {
+        width: 200px;
+        height: 200px;
+        border: 1px solid rgb(227, 228, 232);
+        border-radius: 5%;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        display: flex;
+        font-size: 1.2rem;
+        margin: auto;
+        color: deepskyblue;
+        cursor: pointer;
     }
 </style>

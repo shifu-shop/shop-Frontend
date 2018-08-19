@@ -19,8 +19,8 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchStr" required>
+                    <button class="btn btn-outline-light my-2 my-sm-0 disabled" type="submit">Search</button>
                 </form>
             </div>
         </nav>
@@ -39,5 +39,10 @@
 <script>
     export default {
         name: 'App',
+        data() {
+            return {
+                searchStr: ''
+            }
+        },
     }
 </script>

@@ -24,10 +24,12 @@ const actions = {
         })
     },
     add({ commit }, id) {
-        axios.post(`http://80.87.197.194:8888/cart/${id}`).then(response => {
-            console.log(response)
-        }).catch(error => {
-            console.table(error)
+        return new Promise((resolve, reject) => {
+            axios.post(`http://80.87.197.194:8888/cart/${id}`).then(response => {
+                resolve(true);
+            }).catch(error => {
+                reject(error);
+            });
         });
     },
     increment({ commit }, id) {

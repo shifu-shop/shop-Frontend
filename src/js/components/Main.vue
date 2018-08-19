@@ -3,7 +3,10 @@
             <div class="product-list">
                 <section class="section product row" v-for="product in products">
                     <header class="product-header col-4">
-                        <img src="" alt="" class="product-header-img">
+                        <img :src="product.img64" alt="source image" class="product-header-img" v-if="product.img64">
+                        <div class="product-header-img" v-else>
+                            <p>No photo</p>
+                        </div>
                     </header>
                     <div class="product-header-title col-8">
                         <router-link :to="'product/' + product._id" class="product-title col-12">{{ product.title }}</router-link>
@@ -54,6 +57,7 @@
         border-radius: 5%;
         justify-content: center;
         flex-direction: column;
+        font-size: 1.2rem;
         text-align: center;
         display: flex;
         margin: auto;
